@@ -13,15 +13,14 @@ import Legend from "@/components/Legend";
 import InfoColumn from "@/components/InfoColumn";
 import type { Place } from "@/data/places";
 
-// Dynamically import map to avoid SSR
 const MapView = dynamic(() => import("@/components/MapView"), {
   ssr: false,
   loading: () => (
     <div
-      className="w-full h-full flex items-center justify-center rounded-xl2 border-2 border-inkt"
+      className="w-full h-full flex items-center justify-center"
       style={{ background: "var(--blauw-vlak)" }}
     >
-      <p className="font-bold text-gray-600">Kaart laden…</p>
+      <p className="font-bold text-gray-600">Kaart laden...</p>
     </div>
   ),
 });
@@ -61,8 +60,10 @@ export default function UtrechtClient() {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--papier)" }}>
-      {/* Header */}
-      <header className="border-b-2 border-inkt px-4 py-3 flex items-center gap-4 flex-wrap" style={{ background: "var(--papier)" }}>
+      <header
+        className="border-b-2 border-inkt px-5 py-3 flex items-center gap-4 flex-wrap"
+        style={{ background: "var(--papier)" }}
+      >
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 text-sm font-bold hover:underline"
@@ -82,36 +83,28 @@ export default function UtrechtClient() {
         <span className="text-sm text-gray-500 ml-auto">{openCount} plekken nu open</span>
       </header>
 
-      {/* Controls bar */}
-      <div className="px-4 py-3 border-b border-gray-200 flex flex-wrap gap-3 items-center">
+      <div className="px-5 py-3 border-b border-gray-200 flex flex-wrap gap-3 items-center">
         <TimeSelector selectedDate={selectedDate} onChange={setSelectedDate} />
         <FilterBar filters={filters} onChange={setFilters} />
       </div>
 
-      {/* Main content */}
-      <div className="flex flex-col lg:flex-row flex-1 gap-0 overflow-hidden">
-        {/* Map + Detail pane */}
-        <div className="flex flex-col flex-1 min-h-[420px] lg:min-h-0 relative">
-          {/* Map */}
-          <div className="flex-1 p-3">
-            <div className="relative h-full min-h-[400px] lg:min-h-0 rounded-xl2 border-2 border-inkt overflow-hidden">
-              <MapView
-                places={filteredPlaces}
-                selectedDate={selectedDate}
-                showClosed={filters.showClosed}
-                selectedPlace={selectedPlace}
-                onSelectPlace={handleSelectPlace}
-              />
-              {/* Legend overlay */}
-              <div className="absolute bottom-3 left-3 z-[1000] max-w-[200px]">
-                <Legend />
-              </div>
+      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+        <div className="flex flex-col flex-1" style={{ minHeight: "480px" }}>
+          <div className="relative flex-1 m-3 rounded-xl2 border-2 border-inkt overflow-hidden" style={{ minHeight: "400px" }}>
+            <MapView
+              places={filteredPlaces}
+              selectedDate={selectedDate}
+              showClosed={filters.showClosed}
+              selectedPlace={selectedPlace}
+              onSelectPlace={handleSelectPlace}
+            />
+            <div className="absolute bottom-3 left-3 z-[1000]" style={{ maxWidth: 200 }}>
+              <Legend />
             </div>
           </div>
 
-          {/* Place detail panel */}
           {selectedPlace && (
-            <div className="mx-3 mb-3 p-4 rounded-xl2 border-2 border-inkt bg-white overflow-y-auto max-h-80 lg:max-h-none">
+            <div className="mx-3 mb-3 p-4 rounded-xl2 border-2 border-inkt bg-white overflow-y-auto" style={{ maxHeight: 320 }}>
               <PlaceDetail
                 place={selectedPlace}
                 selectedDate={selectedDate}
@@ -121,10 +114,9 @@ export default function UtrechtClient() {
           )}
         </div>
 
-        {/* Right info column */}
         <div
           className="lg:w-80 xl:w-96 flex-shrink-0 p-4 overflow-y-auto border-t-2 lg:border-t-0 lg:border-l-2 border-inkt"
-          style={{ maxHeight: "calc(100vh - 130px)" }}
+          style={{ maxHeight: "calc(100vh - 110px)" }}
         >
           <InfoColumn />
         </div>
