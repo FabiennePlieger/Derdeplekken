@@ -158,6 +158,13 @@ export default function HomePage() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-gray-500">Meer steden volgen binnenkort.</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Heb je een horecazaak?{" "}
+            <Link href="/portaal" className="font-bold underline" style={{ color: "var(--blauw-diep)" }}>
+              Meld je aan via het portaal
+            </Link>
+            .
+          </p>
         </section>
       </div>
     </main>

@@ -411,6 +411,72 @@ export const places: Place[] = [
     deals: [],
     verified: true,
   },
+
+  // === STUDENTENPLEKKEN (zichtbaar met de student-toggle) ===
+  {
+    id: "ub-binnenstad",
+    naam: "Universiteitsbibliotheek Utrecht Binnenstad",
+    stad: "utrecht",
+    type: "bibliotheek",
+    beschrijving:
+      "De universiteitsbibliotheek aan de Drift, in monumentale panden in de binnenstad. Honderden studieplekken, stilteruimtes en wifi. Toegang met studenten- of medewerkerspas.",
+    adres: "Drift 27, 3512 BR Utrecht",
+    coordinaten: { lat: 52.0926, lng: 5.1228 },
+    openingstijden: {
+      ma: [{ open: "08:00", close: "22:30" }],
+      di: [{ open: "08:00", close: "22:30" }],
+      wo: [{ open: "08:00", close: "22:30" }],
+      do: [{ open: "08:00", close: "22:30" }],
+      vr: [{ open: "08:00", close: "22:30" }],
+      za: [{ open: "10:00", close: "18:00" }],
+      zo: [{ open: "10:00", close: "18:00" }],
+    },
+    kosten: { gratis: true, indicatie: "Gratis met studentenpas" },
+    laptopvriendelijk: true,
+    werkplekken: true,
+    doelgroep: "studenten",
+    wifi: true,
+    toiletten: true,
+    links: {
+      website: "https://www.uu.nl/universiteitsbibliotheek",
+      appleMaps: "https://maps.apple.com/?q=Universiteitsbibliotheek+Utrecht+Binnenstad&ll=52.0926,5.1228",
+      googleMaps: "https://www.google.com/maps/search/?api=1&query=52.0926,5.1228",
+    },
+    deals: [],
+    verified: false,
+  },
+  {
+    id: "ub-sciencepark",
+    naam: "Universiteitsbibliotheek Utrecht Science Park",
+    stad: "utrecht",
+    type: "bibliotheek",
+    beschrijving:
+      "De grootste universiteitsbibliotheek van Utrecht, op het Utrecht Science Park (De Uithof). Ruim 2.000 studieplekken, lange openingstijden en goede wifi. Toegang met studenten- of medewerkerspas.",
+    adres: "Heidelberglaan 3, 3584 CS Utrecht",
+    coordinaten: { lat: 52.0846, lng: 5.1714 },
+    openingstijden: {
+      ma: [{ open: "08:00", close: "22:30" }],
+      di: [{ open: "08:00", close: "22:30" }],
+      wo: [{ open: "08:00", close: "22:30" }],
+      do: [{ open: "08:00", close: "22:30" }],
+      vr: [{ open: "08:00", close: "22:30" }],
+      za: [{ open: "10:00", close: "22:30" }],
+      zo: [{ open: "10:00", close: "22:30" }],
+    },
+    kosten: { gratis: true, indicatie: "Gratis met studentenpas" },
+    laptopvriendelijk: true,
+    werkplekken: true,
+    doelgroep: "studenten",
+    wifi: true,
+    toiletten: true,
+    links: {
+      website: "https://www.uu.nl/universiteitsbibliotheek",
+      appleMaps: "https://maps.apple.com/?q=Universiteitsbibliotheek+Utrecht+Science+Park&ll=52.0846,5.1714",
+      googleMaps: "https://www.google.com/maps/search/?api=1&query=52.0846,5.1714",
+    },
+    deals: [],
+    verified: false,
+  },
 ];
 
 export function getPlacesByCity(stad: string): Place[] {

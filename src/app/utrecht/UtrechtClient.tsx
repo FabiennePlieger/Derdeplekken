@@ -10,7 +10,6 @@ import FilterBar, { type Filters } from "@/components/FilterBar";
 import TimeSelector from "@/components/TimeSelector";
 import PlaceDetail from "@/components/PlaceDetail";
 import Legend from "@/components/Legend";
-import InfoColumn from "@/components/InfoColumn";
 import type { Place } from "@/data/places";
 
 const MapView = dynamic(() => import("@/components/MapView"), {
@@ -35,11 +34,13 @@ export default function UtrechtClient() {
     laptopOnly: false,
     showClosed: false,
     dealsOnly: false,
+    studentMode: false,
   });
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
   const filteredPlaces = useMemo(() => {
     return utrechtPlaces.filter((p) => {
+      if (p.doelgroep === "studenten" && !filters.studentMode) return false;
       if (filters.type && p.type !== filters.type) return false;
       if (filters.gratisOnly && !p.kosten.gratis) return false;
       if (filters.laptopOnly && !p.laptopvriendelijk) return false;
@@ -54,12 +55,18 @@ export default function UtrechtClient() {
   }, []);
 
   const openCount = useMemo(
-    () => utrechtPlaces.filter((p) => isOpenAt(p, selectedDate)).length,
-    [selectedDate]
+    () =>
+      utrechtPlaces.filter(
+        (p) =>
+          (p.doelgroep !== "studenten" || filters.studentMode) &&
+          isOpenAt(p, selectedDate)
+      ).length,
+    [selectedDate, filters.studentMode]
   );
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--papier)" }}>
+      {/* Header */}
       <header
         className="border-b-2 border-inkt px-5 py-3 flex items-center gap-4 flex-wrap"
         style={{ background: "var(--papier)" }}
@@ -83,13 +90,17 @@ export default function UtrechtClient() {
         <span className="text-sm text-gray-500 ml-auto">{openCount} plekken nu open</span>
       </header>
 
+      {/* Controls */}
       <div className="px-5 py-3 border-b border-gray-200 flex flex-wrap gap-3 items-center">
         <TimeSelector selectedDate={selectedDate} onChange={setSelectedDate} />
         <FilterBar filters={filters} onChange={setFilters} />
       </div>
 
+      {/* Main layout */}
       <div className="flex flex-col lg:flex-row flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+        {/* Left: map + detail */}
         <div className="flex flex-col flex-1" style={{ minHeight: "480px" }}>
+          {/* Map fills all available space */}
           <div className="relative flex-1 m-3 rounded-xl2 border-2 border-inkt overflow-hidden" style={{ minHeight: "400px" }}>
             <MapView
               places={filteredPlaces}
@@ -98,11 +109,13 @@ export default function UtrechtClient() {
               selectedPlace={selectedPlace}
               onSelectPlace={handleSelectPlace}
             />
+            {/* Legend bottom-left overlay */}
             <div className="absolute bottom-3 left-3 z-[1000]" style={{ maxWidth: 200 }}>
               <Legend />
             </div>
           </div>
 
+          {/* Place detail below map */}
           {selectedPlace && (
             <div className="mx-3 mb-3 p-4 rounded-xl2 border-2 border-inkt bg-white overflow-y-auto" style={{ maxHeight: 320 }}>
               <PlaceDetail
@@ -112,13 +125,6 @@ export default function UtrechtClient() {
               />
             </div>
           )}
-        </div>
-
-        <div
-          className="lg:w-80 xl:w-96 flex-shrink-0 p-4 overflow-y-auto border-t-2 lg:border-t-0 lg:border-l-2 border-inkt"
-          style={{ maxHeight: "calc(100vh - 110px)" }}
-        >
-          <InfoColumn />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ interface Filters {
   laptopOnly: boolean;
   showClosed: boolean;
   dealsOnly: boolean;
+  studentMode: boolean;
 }
 
 interface Props {
@@ -45,6 +46,7 @@ export default function FilterBar({ filters, onChange }: Props) {
         { key: "gratisOnly" as const, label: "Gratis" },
         { key: "laptopOnly" as const, label: "💻 Laptop OK" },
         { key: "showClosed" as const, label: "Toon gesloten", invert: true },
+        { key: "studentMode" as const, label: "🎓 Ik ben student" },
       ].map(({ key, label, invert }) => (
         <button
           key={key}
