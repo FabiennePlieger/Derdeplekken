@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const tijdlijn = [
   { jaar: "2024", tekst: "Idee: een kaart van alle gratis derde plekken in Utrecht." },
-  { jaar: "2025", tekst: "Derdeplekken.nl live met Utrecht: 13 plekken, interactieve kaart, actuele openingstijden." },
+  { jaar: "2025", tekst: "Derdeplekken.nl live met Utrecht: 15 plekken, interactieve kaart, actuele openingstijden." },
   { jaar: "Soon", tekst: "Meer steden, horecadeals voor studenten, bijdragen van bewoners." },
 ];
 
@@ -122,7 +122,7 @@ export default function OverPage() {
                 </span>
               </div>
               <div className="px-5 py-3 text-sm text-gray-600">
-                13 plekken: bibliotheken, buurtcentra en parken
+                15 plekken: bibliotheken, buurtcentra, parken en studieplekken voor studenten
               </div>
             </Link>
           </div>

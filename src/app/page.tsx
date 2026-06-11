@@ -98,7 +98,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 gap-4">
             {[
-              { num: "13", label: "plekken in Utrecht", color: "var(--blauw-vlak)" },
+              { num: "15", label: "plekken in Utrecht", color: "var(--blauw-vlak)" },
               { num: "100%", label: "gratis toegang", color: "var(--groen-vlak)" },
               { num: "7 dgn", label: "openingstijden vooruit", color: "var(--geel-vlak)" },
               { num: "1 stad", label: "meer steden volgen", color: "var(--koraal)" },
@@ -154,7 +154,7 @@ export default function HomePage() {
                 </div>
                 <span className="px-5 py-2 rounded-full text-sm font-extrabold" style={{ background: "#fff", color: "#cc0000" }}>Ontdek Utrecht</span>
               </div>
-              <div className="px-6 py-4 text-sm text-gray-600">13 plekken: bibliotheken, buurtcentra en parken</div>
+              <div className="px-6 py-4 text-sm text-gray-600">15 plekken: bibliotheken, buurtcentra, parken en studieplekken voor studenten</div>
             </Link>
           </div>
           <p className="mt-4 text-sm text-gray-500">Meer steden volgen binnenkort.</p>
